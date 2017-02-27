@@ -1,0 +1,520 @@
+Practical Metaprogramming in Go
+GopherConIndia
+20 Feb 2015
+Tags: gopherconindia, go, sourcegraph, metaprogramming
+
+Beyang Liu
+Sourcegraph
+[[https://sourcegraph.com]]
+@beyang
+@srcgraph
+
+# Abstract
+#
+# Metaprogramming, the process of writing programs that generate, modify, or analyze other
+# programs (or themselves), is often associated with languages like Ruby and C++. But
+# metaprogramming can be extremely useful in Go, as well, and Go has great libraries to
+# support it. This talk will go over a few examples of how metaprogramming can make your
+# life as a Go programmer easier, and how we've used these techniques to build, test, and
+# ship a large-scale Go web app.
+
+* Liveblog!
+
+[[http://gophercon.sourcegraph.com]]
+
+Thanks to
+
+- Matthew Kanwisher (@kanwisher)
+- Niket Patel (@nexneo)
+- Julia Poladsky (@juliaallyce)
+- Bill Kennedy (@goinggodotnet)
+- Guillaume Charmes (@charme_g)
+- Mike Gehard (@mikegehard)
+- Alan Shreve (@inconshreveable)
+- Dave Cheney (@davecheney)
+- Gabriel Aszalos (@gabrielaszalos)
+
+* What is metaprogramming?
+
+A *metaprogram* is a program that generates, modifies, or analyzes other programs.
+
+- C++ template metaprogramming
+- Lisp macros
+- Ruby method_missing
+- Python metaclasses and decorators
+
+FANCY!!!
+
+
+
+
+* But really, what is metaprogramming?
+
+meta ≠ complex
+
+Programming involves automating tedious, but important tasks.
+Metaprogramming involves automating tedious, but important programming tasks.
+
+- Doesn't have to be fancy.
+- More people should do it.
+
+
+
+
+
+* Motivation: writing a web application in Go
+# - Application layer (receives request from end user, generates and serves HTML)
+# - API layer (receives API requests from application, returns JSON)
+# - Data layer (internal interface of the API server, talks to DB, checks permissions, returns data)
+
+.image webappstruct.svg 500 1050
+
+Web app architecture (see Quinn Slack's [[http://go-talks.appspot.com/github.com/sourcegraph/talks/google-io-2014/gio2014.slide#1][talk at Google IO 2014]])
+
+
+* Ideally, we would like
+
+- Good, fast unit tests
+- High confidence in the correctness of critical logic
+- Hassle-free deployment
+
+
+
+
+* Goal 1: good, fast unit tests via mocks
+# Want tests to run quickly, failures easy to diagnose.
+# Each test should cover one component
+# So you replace the components you don't want to test with mock "dummy" components.
+
+Mock pattern in Go:
+
+  type Service interface {
+       GetRepo(r RepoSpec) (*Repo, error)
+  }
+
+  // Implementation
+  type service struct { ... }
+  func (s *service) GetRepo(r RepoSpec) (*Repo, error) { ... }
+
+  // Mock
+  type MockService struct {
+       GetRepo_ func(r RepoSpec) (*Repo, error)
+  }
+
+  func (s *MockService) GetRepo(r RepoSpec) (*Repo, error) {
+       return s.GetRepo_(r)
+  }
+
+  // Test
+  func Test_someOtherPartOfTheApp(t *testing.T) {
+       s := MockService{func(r RepoSpec) { return { &Repo{Name: "fakerepo"} } }
+       ...
+  }
+
+
+* So you added a bunch of features...
+
+  type Service interface {
+
+       GetRepo(r RepoSpec) (*Repo, error)
+
+       ListRepos(opt ListRepoOpts) ([]*Repo, error)
+
+       CreateRepo(r *Repo) (*Repo, error)
+
+       GetDef(d DefSpec) (*Def, error)
+
+       ListDefs(opt ListDefsOpts) ([]*Def, error)
+
+       GetRef(r RefSpec) (*Ref, error)
+
+       ListRefs(opt ListRefsOpts) ([]*Ref, error)
+
+       // etc.
+  }
+
+* Now you need to write a bunch of tedious code for the mock :(
+# One of the reasons programmers don't like writing tests is that test code can be tedious to write.
+
+  type MockService struct {
+       GetRepo_ func (r RepoSpec) (*Repo, error)
+       ListRepos_ func(opt ListRepoOpts) ([]*Repo, error)
+       CreateRepo_ func(r *Repo) (*Repo, error)
+       GetDef_ func(d DefSpec) (*Def, error)
+       ListDefs_ func(opt ListDefsOpts) ([]*Def, error)
+       GetRef_ func(r RefSpec) (*Ref, error)
+       ListRefs_ func(opt ListRefsOpts) ([]*Ref, error)
+  }
+  func (s MockService) GetRepo func (r RepoSpec) (*Repo, error) {
+       return s.GetRepo_(r)
+  }
+  func (s MockService) ListRepos func(opt ListRepoOpts) ([]*Repo, error) {
+       return s.ListRepos_(opt)
+  }
+  func (s MockService) CreateRepo func(r *Repo) (*Repo, error) {
+       return s.CreateRepo_(r)
+  }
+  func (s MockService) GetDef func(d DefSpec) (*Def, error) {
+       return s.GetDef_(d)
+  }
+  func (s MockService) ListDefs func(opt ListDefsOpts) ([]*Def, error) {
+       return s.ListDefs_(opt)
+  }
+  func (s MockService) GetRef func(r RefSpec) (*Ref, error) {
+       return s.GetRef_(r)
+  }
+  func (s MockService) ListRefs func(opt ListRefsOpts) ([]*Ref, error) {
+       return s.ListRefs_(opt)
+  }
+
+
+
+* gen-mocks: command-line tool to auto-generate code for mocks
+# More time to focus on the actual content of the tests.
+
+Used for [[https://sourcegraph.com/sourcegraph/go-sourcegraph][Sourcegraph's API client]] ([[https://sourcegraph.com/sourcegraph/go-sourcegraph]]) and internal services.
+
+  $ go get sourcegraph.com/sourcegraph/gen-mocks
+  $ gen-mocks -n=service -o=service/ -p=sourcegraph.com/sourcegraph/service
+
+For every file.go that contains a service interface, outputs file_mock.go.
+
+Just 200 lines of code:
+[[https://sourcegraph.com/sourcegraph/gen-mocks@master/.tree/gen_mocks.go]]
+
+
+
+
+
+* Goal 2: double-check critical code
+# In addition to unit tests, might want other checks for critical code.
+
+Correctness of permissions checking code is critical.
+
+  func (s *service) GetRepo(r RepoSpec) (*Repo, error) {
+       if !hasPermission(s.UserID, r) {
+          return nil, errors.New("permission denied")
+       }
+
+       ...
+  }
+
+We verify it with:
+
+- unit tests
+- strong code review practices
+
+But we could use a third line of defense.
+
+
+* Easy to screw up
+# If you think 3rd line of defense is overkill, consider how easy it is to screw up.
+# Code reviewer might miss permissions bug in large PR.
+# Tests might not catch it because they were rewritten or not yet added.
+
+You could accidentally remove the permissions check
+
+  func (s *service) GetRepo(r RepoSpec) (*Repo, error) {
+  -     if !hasPermission(s.UserID, r) {
+  -        return nil, errors.New("permission denied")
+  -     }
+  +     // Some big
+  +     // and complex
+  +     // refactor
+  +     ...
+  }
+
+or forget to include the permissions check in new code.
+
+  + func (s *service) DeleteRepo(r RepoSpec) error {
+  +      return db.Exec(`DELETE FROM repo WHERE rid = $1`, r.RID)
+  + }
+
+* "Warn me if any service method doesn't call a function called 'hasPermission'"
+# go-astquery is a set of convenience functions that let you ask simple questions about the code's AST.
+
+  $ ./verify-permissions-checks
+  service.GetRepo
+  FAIL
+  The above service methods failed to check permissions.
+
+[[https://sourcegraph.com/github.com/beyang/go-astquery][go-astquery]], a set of convenience functions for querying the AST, 300 lines of code.
+
+Learn by example:
+
+- [[https://sourcegraph.com/github.com/beyang/go-astquery/.GoPackage/github.com/beyang/go-astquery/.def/Find][astquery.Find(nodes, filter)]]
+- [[https://sourcegraph.com/github.com/golang/go/.GoPackage/go/parser/.def/ParseDir]]
+
+
+* Using go-astquery
+
+  // verify-permissions-check.go
+
+  import (
+      "github.com/beyang/go-astquery"
+      ...
+  )
+
+  func main() {
+       bpkg, _ := build.Import("sourcegraph.com/sourcegraph/sourcegraph/service")
+       pkgs, _ := parser.ParseDir(token.NewFileSet(), bpkg.Dir, nil, parser.AllErrors)
+       pkg := pkgs["service"]
+       service := astquery.Find([]ast.Node{pkg},
+         astquery.SetFilter{Names: []string{"service"}, Type: ((*ast.TypeSpec)(nil))})[0]
+       methods := astquery.Find([]ast.Node{pkg},
+         astquery.MethodFilter{ReceiverType: astquery.GetName(service)})
+       for _, method := range methods {
+           calls := astquery.Find([]ast.Node{method}, SetFilter{Names: []string{"hasPermission"}, type: ((*ast.TypeSpec)(nil))})
+           if len(calls) == 0 {
+              fmt.Fprintf(os.Stderr, "SECURITY WARNING: PERMISSIONS NOT CHECKED")
+              os.Exit(1)
+           }
+       }
+  }
+
+
+* Checking package import structure
+# May want to check the package dependency structure of your codebase.
+# To enforce best practices, but maybe security implications.
+# Not a strict guarantee, but good sanity check. Can make it more complex/thorough if you want.
+
+Want to prevent direct access from app to db package
+
+   package app
+
+   import "sourcegraph.com/sourcegraph/sourcegraph/db"
+
+   func serveRepoPage(w http.ResponseWriter, r *http.Request) {
+     ...
+     rows, err := db.Query(`SELECT * FROM repo WHERE rid=$1`, rid)
+     ...
+   }
+
+Use go list to check package import structure:
+
+  $ go list -f {{.Imports}} sourcegraph.com/sourcegraph/sourcegraph/app \
+    | grep sourcegraph.com/sourcegraph/sourcegraph/db
+
+
+
+* Go oracle
+# - one drawback is for this type of question, must be scoped to an entire program, which is slow on Sourcegraph's codebase
+
+Powerful library/tool for asking questions about code ([[https://sourcegraph.com/github.com/golang/tools@master/.tree/oracle][view source]]).
+
+- interfaces satisfied by a type
+- possible concrete types of an interface variable
+- callers of a function
+- callees of a function
+- callstack, callgraph
+- channel peers
+
+Could implement a stronger permissions check using Go oracle.
+Potential for many more static analysis tools here.
+
+(see [[http://talks.golang.org/2014/static-analysis.slide][Alan Donovan's excellent talk on the Go oracle]])
+
+
+
+
+
+* Goal 3: hassle-free distribution
+
+Go lets you just ship your app as a single static binary.
+
+
+* ...Or does it?
+
+What about
+
+- HTML template files
+- JavaScript/CSS
+- static images
+- fonts
+- environment variables
+
+* go-bindata: roll static assets into the Go binary
+
+Awesome library ([[https://sourcegraph.com/github.com/jteeuwen/go-bindata][github.com/jteeuwen/go-bindata]]) written by [[https://jteeuwen.nl/][Jim Teeuwen]]
+
+  $ go get github.com/jteeuwen/go-bindata/...
+  $ go-bindata -ignore=data.go -prefix=app/templates -pkg=templates -o app/templates/data.go \
+    app/templates/...
+
+Static asset files stored as byte arrays:
+
+  var _layout_html = []byte("\x1f\x8b\x08\x00\x00\x09...\x00")
+
+Access the data liked this:
+
+   import "sourcegraph.com/sourcegraph/sourcegraph/app/templates"
+
+   func parseTemplates() {
+      ...
+      tmpl := template.New("")
+      tmplbytes, err := Asset("app/templates/main.html") // instead of filesystem access
+      _, err = tmpl.Parse(string(tmplbytes))
+      ...
+   }
+
+* go-bindata: fall back to filesystem during development
+
+During development, pass the *-dev* flag to generate code that reads from the underlying asset files, but presents the *same*interface* (so non-generated code doesn't have to change).
+
+  $ go-bindata -dev -ignore=data.go -prefix=app/templates -pkg=templates -o app/templates/data.go \
+    app/templates/...
+
+
+* Environment variables
+
+  export BASE_URL=https://sourcegraph.com
+  export HEAP_ANALYTICS_ID=99999
+  export GOOGLE_ANALYTICS_TRACKING_ID=99999
+  export SESSION_SIGNING_KEY_BASE64=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  export SESSION_ENCRYPTION_KEY_BASE64=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  export APPDASH_URL=https://appd.sourcegraph.com
+  export APPDASH_PORT=5678
+  export S3_BUCKET=https://sg-us-west-2.amazonaws.com/
+  export S3_ROOT=s3://sg-store
+  export LOG_HOST=logs.papertrailapp.com:12345
+  export USE_PAPERTRAIL=t
+  export USE_CSP=t
+  export PGHOST=localhost
+  export PGDATABASE=sourcegraph
+  export PGPASSWORD=passw0rd
+  export PGUSER=sourcegraph
+  export PGSSLMODE=enable
+
+  # etc...
+
+* go-envdata
+
+Sets defaults for environment variables from dev environment or existing config file:
+
+  $ go get github.com/beyang/go-envdata
+  $ env -i bash -c 'source ~/config.sh; go-envdata -pkg env -o env/env.go;'
+
+Auto-generates code:
+
+  var defaults = map[string]string{}
+
+  func init() {
+    for k, v := range defaults {
+      if os.Getenv(k) == "" {
+        os.Setenv(k, v)
+      }
+    }
+  }
+
+Import the generated package for side effects:
+
+   import _ "sourcegraph.com/sourcegraph/sourcegraph/env"
+
+   var baseURL = os.Getenv("BASE_URL")
+
+
+* Deployment process
+# One caveat here is we still need to set up Postgres, but that's a one time cost.
+
+  $ scp sg@deploy.sourcegraph.com:~/sourcegraph .
+  $ ./sourcegraph
+  Server listening on :80
+
+
+* How do I incorporate this into my dev process?
+
+
+* Option 1: via Makefile
+
+  .PHONY: dev dist generate-dev generate-dist test
+
+  dev: generate-dev
+        go install ./...
+
+  dist: generate-dist test
+        go install ./...
+
+  generate-dev:
+        go-bindata -dev -ignore=data.go -prefix=app/templates -pkg=templates -o app/templates/data.go app/templates/...
+        go-envdata -dev -pkg env -o env/env.go
+
+  generate-dist:
+        go-bindata -ignore=data.go -prefix=app/templates -pkg=templates -o app/templates/data.go app/templates/...
+        env -i bash -c 'source ~/config.sh; go-envdata -pkg env -o env/env.go;'
+
+  test:
+        verify-permissions-check
+        go test ./...
+
+* Option 2: via go generate
+
+New feature of go command starting in Go 1.4.
+
+In code:
+
+   //go:generate <command> <args>
+
+E.g., in sourcegraph.com/sourcegraph/go-sourcegraph/sourcegraph/client.go:
+
+  //go:generate gen-mocks -p sourcegraph.com/sourcegraph/go-sourcegraph/sourcegraph -n sourcegraph \
+    -o . -w
+
+Then run:
+
+   $ go generate ./...
+
+Advantages
+
+- no external tool dependency
+- cross-platform
+
+
+
+* To metaprogram or not to metaprogram?
+# In other languages, metaprogramming can have a reputation as complex, "experts-only" territory, because it can be
+# easy to abuse. E.g., Ruby method_missing, Python function decorators, etc.
+
+Metaprogramming adds complexity
+
+- more steps in build process
+- increased mental overhead
+- harder to debug
+
+Principle: Empathize with the reader.
+
+- Code is written once, read many times.
+- Auto-generated code should ideally be human-readable.
+- Avoid "magic".
+
+
+
+* Other examples of metaprogramming in Go
+
+- [[http://golang.org/x/tools]]
+- [[https://github.com/golang/go/wiki/GoGenerateTools]]
+- [[https://godoc.org/golang.org/x/tools/cmd/stringer]]
+- [[https://github.com/campoy/jsonenums]]
+- [[https://github.com/sourcegraph/gostringer]] ([[https://sourcegraph.com/shurcoo][Dmitri Shuryalov]])
+- [[https://github.com/ChimeraCoder/gojson]]
+
+A lot of these are short and sweet (200-300 lines of code).
+
+
+* Go makes all of this extremely doable
+
+.image tools.svg
+
+(image taken from [[http://talks.golang.org/2014/static-analysis.slide#8][Alan Donovan's talk]])
+
+
+* Ideas for more metaprograms
+# - srclib is a cross-language analysis library that lets you write cross-language metaprograms
+# - one such metaprogram is Sourcegraph, also editor plugins
+# - inspired by analysis packages in Go standard library; srclib wants to make it as easy to build metaprograms across many languages as it is to build metaprograms in Go
+# - Main takeaway: metaprogramming in Go is both useful and accessible, and I hope you'll now go and create new awesome metaprograms and share them with the rest of the community.
+
+- Generate entire API client from curl and JSON examples.
+- Generate/update stub implementation that satisfies a set of interfaces.
+# - Update existing implementations if a new method is added to an interface.
+# - Visualizations for Go oracle callgraph, interface graph, channel peers, etc.
+- srclib ([[https://srclib.org]]), a cross-language (Go, Java, JavaScript, Python, Ruby, Haskell) analysis library that powers [[https://Sourcegraph.com]] and editor plugins, heavily inspired by Go analysis libraries and tools
