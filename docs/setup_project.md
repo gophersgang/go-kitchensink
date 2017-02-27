@@ -6,7 +6,6 @@
   - [Structuring Applications for Growth - 2016](https://codeandtalk.com/v/gophercon-denver-2016/gophercon-2016-lightning-talk-ben-johnson) + [slides](https://github.com/benbjohnson/structuring-applications-for-growth/blob/master/main.slide)
   - [Successful Go Program Design, 6 Years On - 2016](https://www.infoq.com/presentations/go-patterns)
   - [Self Compiling Go with Docker - 2016/08](http://web-rat.com/posts/2016/08/23/self-compiling-go-docker/)
-
   - [Practical Persistence in Go: Organising Database Access - 2015/06](http://www.alexedwards.net/blog/organising-database-access)
 
 

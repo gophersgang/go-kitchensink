@@ -10,8 +10,6 @@
   - https://github.com/StabbyCutyou/sqltocsv
 
 
-
-
 ###
   - https://github.com/uber/tchannel-go/ (Go implementation of a multiplexing and framing protocol for RPC calls )
 
@@ -56,20 +54,6 @@ Tools:
   - https://github.com/CAFxX/kafkabalancer (Automatically rebalance your kafka topics, partitions, replicas across your cluster)
   - https://github.com/sclasen/event-shuttle (Unix system service that collects events and reliably delivers them to kafka, relieving other services on the same system from having to do so.)
   - https://github.com/sclasen/streambolt (snapshot kinesis stream shards into boltdb files that are stored in s3, bootstrap your kinesis consumer from those boltdb files stored in s3.)
-
-
-### RabbitMQ
-  - https://github.com/armon/relay
-
-### Tailing Logs:
-  - https://github.com/vsco/autobahn-binlog (A Go package for tailing MySQL v5.5.x binary replication streams.)
-  - https://github.com/harlow/kinesis-connectors (Golang library for processing Kinesis streams data)
-  - https://github.com/tedsparc/httptail (continuously streaming the contents of a file as it is appended to, with the file residing on an HTTP server)
-
-
-  https://github.com/frosenberg/go-cloud-stream
-  https://github.com/frosenberg/go-cloud-stream-modules
-
 
 
 

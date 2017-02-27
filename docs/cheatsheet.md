@@ -1,0 +1,6 @@
+## getting a package to run:
+
+in GOPATH with proper folders ... sigh... (like github.com/mindreframer/...)
+
+    $ go get -t -v ./...
+    $ go test -v ./...
