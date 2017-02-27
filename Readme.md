@@ -7,3 +7,6 @@ Problem:
 Solution:
   - Git repo with a bunch of markdown files.
 
+
+### Lots of great libs here:
+  - https://github.com/gophersgang

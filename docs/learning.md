@@ -1,6 +1,6 @@
 ## Collection of starter material:
 
-  https://github.com/gophersgang
+- https://github.com/gophersgang
 
 ## Examples
   - [Working with Files in Go - 2015](http://www.devdungeon.com/content/working-files-go)
@@ -11,5 +11,4 @@
   - [Advanced Patterns with io.ReadWriter](http://www.slideshare.net/weaveworks/advanced-patterns-with-ioreadwriter)
 
 
-## Courses:
-  - https://github.com/golang/go/wiki/Courses
+

@@ -21,3 +21,8 @@
   - [Loose Coupling in Go lang](https://8thlight.com/blog/javier-saldana/2015/02/06/loose-coupling-in-go-lang.html)
   - [Object Oriented Programming in Go - 2013](https://www.goinggo.net/2013/07/object-oriented-programming-in-go.html)
   - https://github.com/marcusolsson/goddd
+
+
+## Packages
+  - https://www.goinggo.net/2013/07/how-packages-work-in-go-language.html
+  - https://www.goinggo.net/2017/02/design-philosophy-on-packaging.html
