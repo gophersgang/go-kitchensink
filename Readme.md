@@ -1,14 +1,9 @@
-Confessions of a Gopher - 2016/05 - https://www.youtube.com/watch?v=RN_-kzsaKoc
-  Really honest and interesting presentation about engineering culture and reasons to pick Go.
+## My loose and barely sorted collection of information about Go
 
 
-Microservices vs Go
-  - http://www.shift8creative.com/posts/flexible-service-oriented-architecture-in-go/
+Problem:
+  - How do I keep all the information around a topic at one place, easily editable and always accessible?
 
+Solution:
+  - Git repo with a bunch of markdown files.
 
-
-Please run with `present` - http://grange74.github.io/blog/2015/05/21/creating-slides-using-gos-present-package/
-
-
-Good examples:
-  - https://github.com/sourcegraph/talks
