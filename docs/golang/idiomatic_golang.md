@@ -1,4 +1,4 @@
-
+### Idiomatic Go
 - https://golang.org/doc/faq
 - https://github.com/golang/go/wiki/CodeReviewComments
 - https://golang.org/doc/code.html
@@ -11,7 +11,5 @@
 - [Wrapping packages to isolate code responsibility](https://www.calhoun.io/wrapping-packages-to-isolate-code-responsibility/)
 
 
-
-
-Code Samples
+### Code Samples
   - https://rosetta.alhur.es/compare/Ruby/Go/#
