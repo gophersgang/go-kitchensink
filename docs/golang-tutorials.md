@@ -1,0 +1,2 @@
+- http://blog.ralch.com/tutorial/ - High quality articles about design patterns in Go and such
+-
