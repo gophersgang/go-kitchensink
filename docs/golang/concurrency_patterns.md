@@ -6,8 +6,8 @@
 - [Gofragments - Concurrency](http://www.gofragments.net/concurrency)
 - [Run strikingly fast parallel file searches in Go with sync.ErrGroup - 2016/09](https://www.oreilly.com/learning/run-strikingly-fast-parallel-file-searches-in-go-with-sync-errgroup)
 
-
 ## Concurrency with locks / Mutexes
+  - [Dancing with Go’s Mutexes - 2015/11](https://medium.com/@deckarep/dancing-with-go-s-mutexes-92407ae927bf#.sht1rrymc)
   - https://www.cs.princeton.edu/courses/archive/fall16/cos418/docs/P1-concurrency.pdf (part of
     https://www.cs.princeton.edu/courses/archive/fall16/cos418/syllabus.html - Fall 2016: Distributed Systems)
   - https://blog.ksub.org/bytes/2015/10/11/the-little-go-book-of-semaphores/

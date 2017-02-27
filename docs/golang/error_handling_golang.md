@@ -3,3 +3,4 @@
 - [What I Don’t Like About Error Handling in Go, and How to Work Around It - 2017/01](https://opencredo.com/why-i-dont-like-error-handling-in-go/)
     - https://github.com/go-errors/errors
 
+- [Best Practices for Errors in Go - 2014](https://justinas.org/best-practices-for-errors-in-go/)
