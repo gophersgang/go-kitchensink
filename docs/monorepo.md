@@ -1,7 +1,17 @@
 ### Monorepo:
 
+
+
+#### Software
+  - https://github.com/Originate/morula - task runner for monorepos
+
+
+#### Articles
+  - [Why is Babel a monorepo? - 2016](https://github.com/babel/babel/blob/master/doc/design/monorepo.md)
   - [Why We Should Use Monolithic Repositories](https://gist.github.com/arschles/5d7ba90495eb50fa04fc)
   - [Go in a Monorepo - 2015 (digital ocean)](https://blog.gopheracademy.com/advent-2015/go-in-a-monorepo/)
+  - [On Monolithic Repositories - 2014](http://gregoryszorc.com/blog/2014/09/09/on-monolithic-repositories/)
+  - [Google's vs Facebook's Trunk Based Development](http://paulhammant.com/2014/01/08/googles-vs-facebooks-trunk-based-development/) - great points!
   - [Taming Your Go Dependencies - 2015/02](https://www.digitalocean.com/company/blog/taming-your-go-dependencies/)
   - http://blog.shippable.com/our-journey-to-microservices-and-a-mono-repository
   - https://github.com/Shippable/support/issues/2640
