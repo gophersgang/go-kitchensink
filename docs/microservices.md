@@ -7,3 +7,7 @@
 
 ### Auth for microservices:
   - https://www.appsflyer.com/blog/how-we-solved-authentication-and-authorization-in-our-microservices-architecture/
+
+
+### Neomonolith
+  - https://inconshreveable.com/10-07-2015/the-neomonolith/]

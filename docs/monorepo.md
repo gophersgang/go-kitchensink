@@ -9,3 +9,22 @@
     We have a root folder called _global, that if changes will trigger the whole system to be tested.
     Any local folder, will just trigger that folders CI.
   - https://www.meetup.com/go-toronto/events/229845521/
+
+  - [Staffjoy’s V2 Architecture](https://blog.staffjoy.com/staffjoys-v2-architecture-9d2fcb4015fd#.z8fydno1x)
+    - https://github.com/Staffjoy/v2
+
+  philip1209:
+    Yes. I would always use gRPC-gateway in the future. It's an amazing library. Check out the `protobuf` folder - we basically defined the whole api there in a language-agnostic way. For client libraries, you can autogenerate gRPC definitions quickly. For servers, gRPC-gateway provides a Swagger definition that meant that we always had 100% up to date API docs that include a Postman-style way to execute calls. The auto-generated API docs sped up front-end development so much.
+    I think that access to the docs requires logging in, so here are some screenshots: http://imgur.com/a/R0AvB
+    Jason Chen is using Elixer/Phoenix for his new project, by the way, and thinks that it's the future for Rails developers.
+
+    ...
+    Yes. Protocol buffers and grpc-gateway made it easy to scaffold out a quick api, write all the interior logic, and know that there would not be any major issues due to strong typing. We used Gogoproto to annotate the protobuf files so that database crud is easy too.
+
+    ...
+    I'm already starting on my next company. It's a monorepo with three folders: pkg (packages), cmd (any `package main` commands), and static (all JS, SCSS, etc that gets built by Webpack then wrapped up in a single bindata.go). The primary app is a monolith. However, I'm making it possible to add additional service, such as cron jobs in separate containers or a command line utility based on the same protobuf definition.
+
+    ...
+    The Bazel build system [1] is the open-source version of Google's internal build system. It's tough to set up, but once you do - it caches all builds, down to the docker container generation. On changes, it analyzes affected upstream projects and selectively rebuilds them. So, after an initial build, rebuilds are blazingly fast. In fact, the simple act of creating a pull request means that most production builds/deploys come straight from cache.
+    Here [2] is a screenshot of the actual "master branch test, lint, build, and deploy 15 containers to kubernetes" job from our Jenkins. It took about 10 minutes on the build box every time.
+    That being said, in order to make builds work with Bazel, we had to do some wonky stuff. We committed built Javascript files, and we had to manually commit a lot of other types of data files (like bindata.go and protobuf outputs).
