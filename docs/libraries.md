@@ -1,6 +1,7 @@
 ### Some useful libraries
 
 - [Go Data Structures](https://github.com/emirpasic/gods)
+- [DRY (don't repeat yourself) package for Go](https://github.com/ungerik/go-dry) - active support in go??? :P
 - [Fast, powerful, yet easy to use template engine for Go](https://github.com/valyala/quicktemplate)
 
 ### Performance:

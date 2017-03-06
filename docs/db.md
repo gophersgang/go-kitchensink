@@ -18,9 +18,10 @@ ORM:
   - https://github.com/mgutz/dat (JUST FOR Postgres, but good!)
   - https://github.com/go-gorp/gorp (not really maintained...)
   - https://github.com/go-xorm (looks really ok, used in some projects, chinese)
-
   - https://github.com/markbates/pop (newcomer, from gobuffalo)
 
+
+  - https://github.com/gchaincl/sqlhooks (SQL Hooks)
 Static Generators:
   - https://github.com/vattle/sqlboiler
 

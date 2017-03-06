@@ -34,6 +34,8 @@ https://gradha.github.io/articles/2015/01/the-day-go-reinvented-macros.html
   - https://www.reddit.com/r/golang/comments/5rf1no/jennifer_is_a_code_generator_for_go/ - Jennifer is a code generator for Go
 
 
+  - https://github.com/gophersgang/openapi2proto (from OpenAPI to ProtoBuffers)
+
 ### API Documentation:
   - https://github.com/Jumpscale/go-raml - RAML 1.0 implementation
   - https://github.com/go-swagger/go-swagger - Swagger 2.0 implementation for go
