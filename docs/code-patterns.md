@@ -8,7 +8,6 @@
 
 
 ### Actual Design Patterns in Go:
-
   - http://www.golangpatterns.info/
   - https://github.com/gophersgang/go-patterns (Go Examples of Common Patterns)
   - https://github.com/tmrts/go-patterns (Curated list of Go design patterns, recipes and idioms)

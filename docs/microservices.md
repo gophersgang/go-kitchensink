@@ -11,3 +11,10 @@
 
 ### Neomonolith
   - https://inconshreveable.com/10-07-2015/the-neomonolith/]
+
+
+
+### Possible Architecture Decisions:
+  - https://medium.com/capital-one-developers/microservices-when-to-react-vs-orchestrate-c6b18308a14c#.lu450oais
+  - http://devcry.blogspot.de/2012/07/golang-mach-programming-model-in-go.html?m=1
+  - https://www.upnxt.com/blog/pseudo-microservices-in-monolithic-applications
