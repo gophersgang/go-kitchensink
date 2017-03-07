@@ -22,6 +22,7 @@
 
 
 ### Possible Architecture Decisions:
+  - https://github.com/pasztorpisti/nano ()
   - https://github.com/mouadino/go-nano (F)
   - https://medium.com/capital-one-developers/microservices-when-to-react-vs-orchestrate-c6b18308a14c#.lu450oais
   - http://devcry.blogspot.de/2012/07/golang-mach-programming-model-in-go.html?m=1
