@@ -4,7 +4,7 @@
   - [Increase your development velocity in Golang with gocheck - 2016/11](http://www.hydrogen18.com/blog/increase-your-development-velocity-in-golang-with-gocheck.html)
   - [Writing good unit tests for SOLID Go 2016/12](https://blog.gopheracademy.com/advent-2016/how-to-write-good-tests-for-solid-code/)
   - [Go advanced testing tips & tricks - 2017/01](https://medium.com/@povilasve/go-advanced-tips-tricks-a872503ac859#.2heokeuxi)
-
+  - [How to separate Unit and Integration tests in Go - 2017/03](http://pliutau.com/separate_unit_integration_tests/)
 
 ### Libraries:
   - https://github.com/h2non/baloo - Expressive end-to-end HTTP API testing made easy in Go (golang)
