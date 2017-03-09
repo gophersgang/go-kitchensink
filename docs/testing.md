@@ -5,6 +5,7 @@
   - [Writing good unit tests for SOLID Go 2016/12](https://blog.gopheracademy.com/advent-2016/how-to-write-good-tests-for-solid-code/)
   - [Go advanced testing tips & tricks - 2017/01](https://medium.com/@povilasve/go-advanced-tips-tricks-a872503ac859#.2heokeuxi)
   - [How to separate Unit and Integration tests in Go - 2017/03](http://pliutau.com/separate_unit_integration_tests/)
+  - [Testing Over Go Channels - 2016/10](https://www.hugopicado.com/2016/10/01/testing-over-golang-channels.html)
 
 ### Libraries:
   - https://github.com/h2non/baloo - Expressive end-to-end HTTP API testing made easy in Go (golang)
