@@ -4,6 +4,8 @@
   - https://github.com/imdario/mergo (Mergo: merging Go structs and maps since 2013)
   - https://github.com/AlexanderGrom/go-patterns (Design patterns in Golang)
   - http://matthewbrown.io/2016/01/23/factory-pattern-in-golang/  (factory pattern)
+  - https://0value.com/Let-the-Doer-Do-it - (a humble recommendation for Go packages that make HTTP requests)
+  - https://0value.com/about-Go-logging - About Go logging for reusable packages
 
 
 
