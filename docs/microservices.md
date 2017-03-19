@@ -9,6 +9,11 @@
   - https://www.appsflyer.com/blog/how-we-solved-authentication-and-authorization-in-our-microservices-architecture/
 
 
+### Monzo
+  - cassandra for 95% of data - https://youtu.be/WiCru2zIWWs?t=2583
+  - example go service with a short walk-through: https://youtu.be/WiCru2zIWWs?t=2706
+
+
 ### Neomonolith / Modular Monolith
   - https://inconshreveable.com/10-07-2015/the-neomonolith/]
   - http://mozaicworks.com/blog/modular-monolith-microservices/

@@ -15,3 +15,6 @@ Matt Aimonetti:
 
 
 - http://bravenewgeek.com/go-is-unapologetically-flawed-heres-why-we-use-it/
+
+
+- [Open Source Project Flogo - Overview, Architecture and Live Demo](https://youtu.be/W7vmzcW1rpI?t=1197) - 5 mb binary
