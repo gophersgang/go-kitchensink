@@ -24,6 +24,13 @@
   - http://nesv.github.io/golang/2014/02/25/worker-queues-in-go.html
 
 
+### Channels:
+  - http://www.tapirgames.com/blog/golang-channel-closing
+  - https://medium.com/stupid-gopher-tricks/more-powerful-synchronization-in-go-using-channels-f4a1c3242ed0#.1qnm8tqvq
+  - https://inconshreveable.com/07-08-2014/principles-of-designing-go-apis-with-channels/
+  - https://kylewbanks.com/blog/tutorial-synchronizing-state-with-mutexes-golang
+  - http://dmitryvorobev.blogspot.de/2016/08/golang-channels-implementation.html
+  - https://dave.cheney.net/2015/08/08/performance-without-the-event-loop
 
 ### Courses:
   - [Fundamentals of concurrent programming - 2014](http://www.nada.kth.se/~snilsson/concurrency/)
