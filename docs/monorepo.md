@@ -14,6 +14,7 @@
 
 
 #### Articles
+  - [3.5 Years, 500k Lines of Go (Part 1) - 2017/03](https://npf.io/2017/03/3.5yrs-500k-lines-of-go/)
 
   - [Dropbox - Comment on Go code in on repo](https://youtu.be/JOx9enktnUM?t=1113)
     - 400k non-generated Go code
