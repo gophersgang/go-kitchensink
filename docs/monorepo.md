@@ -2,6 +2,13 @@
 
 
 
+### Videos:
+  - [Python Pants - A build system for large codebases with multiple dependencies - PyConSG 2016](https://www.youtube.com/watch?v=Q6sLN8rqkDE&t=1s)
+  - [Building Software at Google Scale: Bazel](https://www.youtube.com/watch?v=6GCDfoAOKIY)
+  - [Bazel: Google's own build tool, now publicly available in Beta by Paul Johnston - 2016/12](https://www.youtube.com/watch?v=G-4jqDgILCM)
+  - [The Pants Build Tool at Twitter - 2014](https://www.youtube.com/watch?v=j_4CVpOIWsE)
+
+
 #### Software
   - https://github.com/Originate/morula - task runner for monorepos
 
