@@ -1,5 +1,16 @@
 ### Concurrency Patterns
 
+
+
+
+- [Go Concurrency Patterns - slides](https://present.go-steel-programmers.org/real_world_concurrency/2013-04-25.slide#5)
+- [Go padawan - Concurrency Links](https://gopadawan.wordpress.com/recursos-sobre-go/)
+- [Streams in Go- Firebase client](https://github.com/BlueMasters/firebasedb)
+- [LearnConcurrency · golang/go Wiki](https://github.com/golang/go/wiki/LearnConcurrency) - really good!
+
+- [How Goroutines Work](http://blog.nindalf.com/how-goroutines-work/)
+- [Chapter 9. Concurrency with Shared Variables - Shichao's Notes](https://notes.shichao.io/gopl/ch9/)
+- https://github.com/DiSiqueira/GoCurrency/blob/master/README.md
 - [Parallel processing with ordered output in Go](https://gist.github.com/MarianoGappa/a50c4a8a302b8378c08c4b0d947f0a33)
 - [Pipeline Processing - 2011/10](https://groups.google.com/forum/m/#!topic/golang-nuts/cHvGb_wOExw)
 - [Pipelines in Golang - 2014/06](http://www.aktau.be/draft/2014/07/13/pipelines-in-golang/)

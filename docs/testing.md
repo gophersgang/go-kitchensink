@@ -9,9 +9,25 @@
 
   - [Quick-and-Dirty Debugging in Golang - 2015/03](http://changelog.ca/log/2015/03/09/golang)
 
+  - [Integration Tests in Go - 2016/01](https://www.philosophicalhacker.com/post/integration-tests-in-go/)
+  - [Use an in-memory listener for unit tests - 2014/11](http://www.hydrogen18.com/blog/in-memory-listener-for-unit-tests.html)
+
+  - [Time utility with lovely mocking support. - ](https://github.com/WatchBeam/clock) - This is essentially a replacement for the time package which allows you to seamlessly swap in mock times, timers, and tickers
+
 ### Libraries:
   - https://github.com/h2non/baloo - Expressive end-to-end HTTP API testing made easy in Go (golang)
   - https://github.com/fortytw2/watney - automatic golden testing for HTTP interactions in Go via .har files
   - https://github.com/golang/mock (GoMock is a mocking framework for the Go programming language.)
   - http://onsi.github.io/ginkgo/ -  is a BDD-style Golang testing framework
   - https://github.com/tockins/realize
+
+
+Another incredibly interesting topic has been designing for testing.
+Mitchell Hashimoto recently gave a great talk on the subject here in Berlin (SpeakerDeck, YouTube) which I think should be required viewing.
+
+- https://speakerdeck.com/mitchellh/advanced-testing-with-go
+- [NewStore TechTalk - Advanced Testing with Go by Mitchell Hashimoto](https://www.youtube.com/watch?v=yszygk1cpEc)
+- [Code Coverage for your Golang System Tests - 2015/09](https://www.elastic.co/blog/code-coverage-for-your-golang-system-tests)
+
+
+- [Writing Testable Code in Go (golang) - 2014/08](http://relistan.com/writing-testable-apps-in-go/)
