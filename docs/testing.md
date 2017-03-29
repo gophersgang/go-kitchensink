@@ -7,6 +7,8 @@
   - [How to separate Unit and Integration tests in Go - 2017/03](http://pliutau.com/separate_unit_integration_tests/)
   - [Testing Over Go Channels - 2016/10](https://www.hugopicado.com/2016/10/01/testing-over-golang-channels.html)
 
+  - [Quick-and-Dirty Debugging in Golang - 2015/03](http://changelog.ca/log/2015/03/09/golang)
+
 ### Libraries:
   - https://github.com/h2non/baloo - Expressive end-to-end HTTP API testing made easy in Go (golang)
   - https://github.com/fortytw2/watney - automatic golden testing for HTTP interactions in Go via .har files

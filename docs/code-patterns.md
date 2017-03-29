@@ -1,4 +1,5 @@
 ### Code patterns
+  - https://dmitri.shuralyov.com/idiomatic-go
   - http://wilianto.com/how-oop-works-in-golang/
   - https://github.com/arnauddri/algorithms (Algorithms & Data Structures in Go)
   - https://github.com/imdario/mergo (Mergo: merging Go structs and maps since 2013)
