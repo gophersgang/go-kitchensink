@@ -3,13 +3,16 @@
 
 - https://twitter.com/hashtag/monorepo?src=hash
 - https://dzone.com/articles/monolithic-repositories-more-pros-than-cons
+- https://trunkbaseddevelopment.com/monorepos/
 
 
 ### Trunk based Development
+
   - https://trunkbaseddevelopment.com/
   - [Google's vs Facebook's Trunk Based Development](http://paulhammant.com/2014/01/08/googles-vs-facebooks-trunk-based-development/) - great points!
   - http://blog.plasticscm.com/2017/04/how-we-do-trunk-based-development-with.html
   - https://paulhammant.com/2017/02/14/pre-commit-continuous-integration-infrastructure-is-cheaper-than-post-commit-for-high-throughput-teams/
+  - http://www.gigamonkeys.com/flowers/
 
 
 ### Videos:
@@ -89,11 +92,38 @@
 
 
 
+### Pants
+  - [Smarty Pants: Improving our Python Build - 2015/11](http://oscardna.tumblr.com/post/133010618340/smartypants)
+
 
 ### Bazel
   - https://github.com/google/nomulus (real example)
   - https://github.com/laramiel/bazel-example-golang
   - https://github.com/bazelbuild/bazel
+  - https://www.kchodorow.com/blog/2015/12/08/combining-projects-without-converting-to-a-monorepo/
+  - http://isilmar-4.linta.de/~aehlig/university/slides/conf/fosdem17.pdf
 
 ### Buck
   - https://news.ycombinator.com/item?id=13865400 (2017/02)
+
+
+### Big repos
+  - https://news.ycombinator.com/item?id=7648237 -  Facebook's git repo is 54GB
+
+
+### Tooling / Code Review
+  - Phabricator:
+    - https://news.ycombinator.com/item?id=12487695
+    - Phabricator is a really solid GitHub alternative. Some of the largest open source projects are using it and lots of companies.
+
+
+    - https://dzone.com/articles/the-13-things-that-make-a-good-build-system
+
+
+### companies
+  - https://blog.ngzhian.com/three-internships.html
+
+
+### Monorepos in general
+  - https://www.reddit.com/r/programming/comments/42gx7v/advantages_of_monolithic_version_control/
+  - https://blog.ghaering.de/post/monorepo-march/
