@@ -125,5 +125,7 @@
 
 
 ### Monorepos in general
+
   - https://www.reddit.com/r/programming/comments/42gx7v/advantages_of_monolithic_version_control/
   - https://blog.ghaering.de/post/monorepo-march/
+  - https://blog.asana.com/2015/09/sane-build-systems/
