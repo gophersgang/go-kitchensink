@@ -7,6 +7,12 @@ Tutorials
   - http://go-database-sql.org/index.html
 
 
+
+Query Embedding:
+  - https://github.com/gchaincl/dotsql
+  - https://github.com/nleof/goyesql
+  - https://www.reddit.com/r/golang/comments/63x4on/dealing_with_large_sql_queries/
+
 Query builder:
   - https://github.com/Masterminds/squirrel (active)
   - https://github.com/doug-martin/goqu (active)

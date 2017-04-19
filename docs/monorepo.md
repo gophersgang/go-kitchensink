@@ -105,6 +105,7 @@
 
 ### Buck
   - https://news.ycombinator.com/item?id=13865400 (2017/02)
+  - [Basics: Building with Buck - 2016/11](https://www.youtube.com/watch?v=sZdDFfNJeuU)
 
 
 ### Big repos
