@@ -1,4 +1,5 @@
 ## Recommended Setup / Project Structure
+  - [Writing Go Applications with Reusable Logic - 2016/10](https://npf.io/2016/10/reusable-commands/)
   - [Intro to gb, a Project-based Build Tool for Go by Dave Cheney](https://www.youtube.com/watch?v=gGXc_tU-AsU)
   - [How To Structure Go Applications - Paul Bellamy - Codemotion Milan 2016 (2016/12)](http://www.slideshare.net/Codemotion/how-to-structure-go-applications-paul-bellamy-codemotion-milan-2016)
   - [Structuring Applications in Go - 2014](https://medium.com/@benbjohnson/structuring-applications-in-go-3b04be4ff091#.l6zqe9w3z)
