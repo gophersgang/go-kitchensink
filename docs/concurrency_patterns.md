@@ -1,8 +1,6 @@
 ### Concurrency Patterns
 
 
-
-
 - [Go Concurrency Patterns - slides](https://present.go-steel-programmers.org/real_world_concurrency/2013-04-25.slide#5)
 - [Go padawan - Concurrency Links](https://gopadawan.wordpress.com/recursos-sobre-go/)
 - [Streams in Go- Firebase client](https://github.com/BlueMasters/firebasedb)

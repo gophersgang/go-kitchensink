@@ -15,7 +15,7 @@
 
 
 ### Neomonolith / Modular Monolith
-  - https://inconshreveable.com/10-07-2015/the-neomonolith/]
+  - https://inconshreveable.com/10-07-2015/the-neomonolith/
   - http://mozaicworks.com/blog/modular-monolith-microservices/
   - https://www.upnxt.com/blog/pseudo-microservices-in-monolithic-applications
   - http://paulhammant.com/2015/05/02/so-you-think-monolith-is-the-only-alternative-to-microservices/

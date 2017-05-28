@@ -7,7 +7,6 @@ Tutorials
   - http://go-database-sql.org/index.html
 
 
-
 Query Embedding:
   - https://github.com/gchaincl/dotsql
   - https://github.com/nleof/goyesql

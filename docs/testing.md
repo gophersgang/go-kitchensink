@@ -18,7 +18,7 @@
 
   - [Time utility with lovely mocking support. - ](https://github.com/WatchBeam/clock) - This is essentially a replacement for the time package which allows you to seamlessly swap in mock times, timers, and tickers
 
-
+  - Regex testing - https://regex-golang.appspot.com/assets/html/index.html
   - [Testing DB code in Go](https://www.reddit.com/r/golang/comments/664833/whats_the_strategy_for_testing_sql_in_go/) + optimize Postgres (http://stackoverflow.com/questions/9407442/optimise-postgresql-for-fast-testing)
 
 ### Libraries:
