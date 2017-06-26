@@ -1,5 +1,7 @@
 ### Monorepo:
 
+- https://arxiv.org/abs/1702.01715
+- https://arxiv.org/pdf/1702.01715.pdf - Software Engineering at Google (2017)
 
 - https://twitter.com/hashtag/monorepo?src=hash
 - https://dzone.com/articles/monolithic-repositories-more-pros-than-cons
