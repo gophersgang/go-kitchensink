@@ -1,6 +1,8 @@
 ### Concurrency Patterns
 
 
+- [Ways to do things - Ways To Do Things - Peter Bourgon](https://www.reddit.com/r/golang/comments/744dxj/ways_to_do_things_peter_bourgon_release_party_gosf/)
+
 - [Go Concurrency Patterns - slides](https://present.go-steel-programmers.org/real_world_concurrency/2013-04-25.slide#5)
 - [Go padawan - Concurrency Links](https://gopadawan.wordpress.com/recursos-sobre-go/)
 - [Streams in Go- Firebase client](https://github.com/BlueMasters/firebasedb)
